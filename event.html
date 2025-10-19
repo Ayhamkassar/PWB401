@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تفاصيل الفعالية</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container">
+<!-- HTML -->
+<a class="navbar-brand fw-bold d-flex align-items-center" href="index.html" id="logo-link">
+  <img src="assets/img/logo2.png" alt="logo" id="logo-img" style="height:40px; margin-right:8px;">
+  <span id="logo-text">دليل فعاليات المدينة</span>
+</a>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navLinks">
+          <li class="nav-item"><a class="nav-link" href="index.html">الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link" href="events.html">الفعاليات</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">عن الدليل</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">اتصل بنا</a></li>
+        </ul>
+        <button id="langToggle" class="btn btn-light ms-2">EN</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="py-5">
+    <div class="container">
+      <div class="row g-4">
+
+        <div class="col-md-8">
+          <img id="eventImage" src="" alt="صورة الفعالية" style="width:100%;height:300px;object-fit:cover">
+          <h2 id="eventTitle" class="mt-3 text-danger fw-bold"></h2>
+          <p id="eventDate"></p>
+          <p id="eventDescription"></p>
+
+          <div class="mt-3">
+            <button id="addToCalendar" class="btn btn-outline-danger">أضف إلى التقويم</button>
+            <button id="shareEvent" class="btn btn-outline-secondary">شارك</button>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card p-3">
+            <h5 class="text-danger" id="similarTitle">فعاليات مشابهة</h5>
+            <ul id="relatedEvents" style="list-style:none; padding:0; margin:0;"></ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer text-center py-3 bg-light mt-4">
+    <p id="footerText">© 2025 دليل فعاليات المدينة</p>
+  </footer>
+
+  <button id="scrollTop">↑</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/eventdata.js"></script>
+  <script src="assets/js/eventsts.js"></script>
+
+<script>
+let currentLang = "ar";
+
+const urlParams = new URLSearchParams(window.location.search);
+const eventId = parseInt(urlParams.get("id"));
+const event = eventsData.find(e => e.id === eventId);
+
+const elements = {
+  title: document.getElementById("eventTitle"),
+  date: document.getElementById("eventDate"),
+  desc: document.getElementById("eventDescription"),
+  img: document.getElementById("eventImage"),
+  related: document.getElementById("relatedEvents"),
+  similarTitle: document.getElementById("similarTitle"),
+  footer: document.getElementById("footerText"),
+  addBtn: document.getElementById("addToCalendar"),
+  shareBtn: document.getElementById("shareEvent"),
+  navLinks: document.getElementById("navLinks"),
+  langToggle: document.getElementById("langToggle"),
+  logoText: document.getElementById("logo-text"),
+  searchInput: document.getElementById("searchInput"),
+  detailsBtns: document.querySelectorAll(".details-btn")
+};
+
+function renderEvent(lang) {
+  if (!event) {
+    elements.title.textContent = lang === "ar" ? "الفعالية غير موجودة" : "Event not found";
+    return;
+  }
+
+  elements.img.src = event.image;
+  elements.title.textContent = event.title[lang];
+  elements.date.textContent = `${event.date[lang]} - ${event.location[lang]}`;
+  elements.desc.textContent = event.description[lang];
+
+  const t = translations[lang];
+
+  elements.similarTitle.textContent = t.similarTitle;
+  elements.footer.textContent = t.footerText;
+  elements.addBtn.textContent = t.addToCalendar;
+  elements.shareBtn.textContent = t.shareButton;
+  elements.logoText.textContent = t.title;
+
+  elements.navLinks.innerHTML = lang === "ar"
+    ? `<li class="nav-item"><a class="nav-link" href="index.html">${t.navHome}</a></li>
+       <li class="nav-item"><a class="nav-link" href="events.html">${t.navEvents}</a></li>
+       <li class="nav-item"><a class="nav-link" href="about.html">${t.navAbout}</a></li>
+       <li class="nav-item"><a class="nav-link" href="contact.html">${t.navContact}</a></li>`
+    : `<li class="nav-item"><a class="nav-link" href="index.html">${t.navHome}</a></li>
+       <li class="nav-item"><a class="nav-link" href="events.html">${t.navEvents}</a></li>
+       <li class="nav-item"><a class="nav-link" href="about.html">${t.navAbout}</a></li>
+       <li class="nav-item"><a class="nav-link" href="contact.html">${t.navContact}</a></li>`;
+
+  elements.related.innerHTML = "";
+  eventsData
+    .filter(e => e.id !== eventId)
+    .slice(0, 3)
+    .forEach(e => {
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="event.html?id=${e.id}">${e.title[lang]}</a>`;
+      elements.related.appendChild(li);
+    });
+}
+
+renderEvent(currentLang);
+
+elements.langToggle.addEventListener("click", () => {
+  currentLang = currentLang === "ar" ? "en" : "ar";
+  document.documentElement.lang = currentLang;
+  document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
+  elements.langToggle.textContent = currentLang === "ar" ? "EN" : "AR";
+  renderEvent(currentLang);
+});
+</script>
+
+</body>
+</html>

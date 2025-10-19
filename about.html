@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>عن الدليل</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container">
+      <a class="navbar-brand fw-bold" id="title">دليل فعاليات المدينة</a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" id="nav-home" href="index.html">الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link" id="nav-events" href="events.html">الفعاليات</a></li>
+          <li class="nav-item"><a class="nav-link active" id="nav-about" href="about.html">عن الدليل</a></li>
+          <li class="nav-item"><a class="nav-link" id="nav-contact" href="contact.html">اتصل بنا</a></li>
+        </ul>
+        <button id="langToggle" class="btn btn-light ms-2">EN</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="py-5">
+    <div class="container text-center">
+      <h2 class="text-danger fw-bold mb-4" id="main-title">عن دليل فعاليات المدينة</h2>
+
+      <p class="mb-5" id="about-text" style="max-width:700px;margin:auto;">
+        تم إنشاء هذا الدليل بهدف مساعدة سكان المدينة وزوارها على اكتشاف أحدث وأهم الفعاليات الثقافية والرياضية والفنية.
+        <br>
+        نحن نعمل على جمع معلومات دقيقة ومحدثة لتكون تجربة المستخدم سهلة وسريعة.
+      </p>
+
+      <h4 class="text-danger fw-bold mb-3" id="team-title">فريق العمل</h4>
+      <div class="row g-3 justify-content-center">
+
+        <div class="col-md-3">
+          <div class="card p-3">
+            <img src="assets/img/team1.jpg" alt="أحمد" style="width:100%;height:180px;object-fit:cover;">
+            <h6 class="mt-2 fw-bold" id="name1">أحمد</h6>
+            <p id="role1">المبرمج الرئيسي</p>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="card p-3">
+            <img src="assets/img/team2.jpg" alt="سارة" style="width:100%;height:180px;object-fit:cover;">
+            <h6 class="mt-2 fw-bold" id="name2">سارة</h6>
+            <p id="role2">مصممة الواجهة</p>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="card p-3">
+            <img src="assets/img/team3.jpg" alt="محمد" style="width:100%;height:180px;object-fit:cover;">
+            <h6 class="mt-2 fw-bold" id="name3">محمد</h6>
+            <p id="role3">كاتب المحتوى</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p id="footer-text">© 2025 دليل فعاليات المدينة</p>
+  </footer>
+
+  <button id="scrollTop">↑</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/aboutts.js"></script>
+
+  <script>
+    let currentLang = "ar";
+    document.documentElement.lang = currentLang;
+    document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
+    document.getElementById("langToggle").addEventListener("click", () => {
+      currentLang = currentLang === "ar" ? "en" : "ar";
+      const t = translations[currentLang];
+      document.documentElement.lang = currentLang;
+      document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
+      document.getElementById("langToggle").textContent = currentLang === "ar" ? "EN" : "AR";
+      document.getElementById("title").textContent = t.title;
+      document.getElementById("nav-home").textContent = t.navHome;
+      document.getElementById("nav-events").textContent = t.navEvents;
+      document.getElementById("nav-about").textContent = t.navAbout;
+      document.getElementById("nav-contact").textContent = t.navContact;
+      document.getElementById("main-title").textContent = t.mainTitle;
+      document.getElementById("about-text").innerHTML = t.aboutText;
+      document.getElementById("team-title").textContent = t.teamTitle;
+      document.getElementById("name1").textContent = t.name1;
+      document.getElementById("role1").textContent = t.role1;
+      document.getElementById("name2").textContent = t.name2;
+      document.getElementById("role2").textContent = t.role2;
+      document.getElementById("name3").textContent = t.name3;
+      document.getElementById("role3").textContent = t.role3;
+      document.getElementById("footer-text").textContent = t.footerText;
+    });
+  </script>
+</body>
+</html>
