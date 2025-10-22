@@ -27,6 +27,7 @@ const translations = {
       navContact: "Contact Us",
       footerText: "© 2025 City Events Guide",
   
+      contactTitle: "Contact Us",
       nameLabel: "Name",
       namePlaceholder: "Enter your name",
       emailLabel: "Email",

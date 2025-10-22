@@ -47,7 +47,7 @@ const eventsData = [
         ar: "عرض مسرحي يحكي قصص التراث السوري الأصيل.",
         en: "A theatrical performance narrating authentic Syrian heritage stories."
       },
-      image: "assets/img/art.png",
+      image: "assets/img/masrhea.jpg",
       governorate: "دمشق",
       category: "ثقافة"
     },
@@ -60,7 +60,7 @@ const eventsData = [
         ar: "بطولة محلية تجمع أفضل الفرق الرياضية في المدينة.",
         en: "A local championship bringing together the best sports teams in the city."
       },
-      image: "assets/img/orcestra.png",
+      image: "assets/img/soccer UEFA.webp",
       governorate: "دمشق",
       category: "رياضة"
     }

@@ -12,7 +12,12 @@ const translations = {
       similarTitle: "فعاليات مشابهة",
       addToCalendar: "أضف إلى التقويم",
       shareButton: "شارك",
-      galleryTitle: "معرض الصور"
+      galleryTitle: "معرض الصور",
+      catAll: "الكل",
+      catMusic: "موسيقى",
+      catCulture: "ثقافة",
+      catSports: "رياضة",
+      catFamily: "عائلي"
     },
     en: {
       title: "City Events Guide",
@@ -27,7 +32,12 @@ const translations = {
       similarTitle: "Similar Events",
       addToCalendar: "Add to Calendar",
       shareButton: "Share",
-      galleryTitle: "Photo Gallery"
+      galleryTitle: "Photo Gallery",
+      catAll: "All",
+      catMusic: "Music",
+      catCulture: "Culture",
+      catSports: "Sports",
+      catFamily: "Family"
     }
   };
 
@@ -105,9 +115,14 @@ window.addEventListener('DOMContentLoaded', function () {
     governorateFilter.addEventListener('change', renderEvents);
   }
 
-  document.querySelectorAll('.category-badge').forEach(function (badge) {
-    badge.addEventListener('click', function () {
-      currentCategory = badge.getAttribute('data-category');
+  document.querySelectorAll('.category-filter-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      // Remove active class from all buttons
+      document.querySelectorAll('.category-filter-btn').forEach(b => b.classList.remove('active'));
+      // Add active class to clicked button
+      btn.classList.add('active');
+      // Update current category
+      currentCategory = btn.getAttribute('data-category');
       renderEvents();
     });
   });
