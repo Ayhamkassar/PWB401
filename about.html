@@ -52,7 +52,7 @@
 
         <div class="col-md-3">
           <div class="card p-3">
-            <img src="assets/img/team1.jpg" alt="محمد ايهم" style="width:100%;height:180px;object-fit:cover;">
+            <img src="assets/img/ayham.jpg" alt="محمد ايهم" style="width:100%;height:180px;object-fit:cover;">
             <h6 class="mt-2 fw-bold" id="name1">محمد ايهم</h6>
             <h6 class="mt-2 fw-bold" id="username1">Mohammad_ayham_303637_C3</h6>
             <p id="role1">المبرمج الرئيسي1</p>
@@ -60,7 +60,7 @@
         </div>
         <div class="col-md-3">
           <div class="card p-3">
-            <img src="assets/img/team1.jpg" alt="مازن" style="width:100%;height:180px;object-fit:cover;">
+            <img src="assets/img/mazen.jpg" alt="مازن" style="width:100%;height:180px;object-fit:cover;">
             <h6 class="mt-2 fw-bold" id="name1b">مازن الدروبي</h6>
             <h6 class="mt-2 fw-bold" id="username1b">mazen_288722_C4</h6>
             <p id="role1b">المبرمج الرئيسي2</p>
@@ -69,7 +69,7 @@
 
         <div class="col-md-3">
           <div class="card p-3">
-            <img src="assets/img/team2.jpg" alt="علا" style="width:100%;height:180px;object-fit:cover;">
+            <img src="assets/img/oula.jpeg" alt="علا" style="width:100%;height:180px;object-fit:cover;">
             <h6 class="mt-2 fw-bold" id="name2">علا حتاحت</h6>
             <h6 class="mt-2 fw-bold" id="username2">Oula_213054_C3</h6>
             <p id="role2">مصممة الواجهة</p>
@@ -78,7 +78,7 @@
 
         <div class="col-md-3">
           <div class="card p-3">
-            <img src="assets/img/team3.jpg" alt="رؤية" style="width:100%;height:180px;object-fit:cover;">
+            <img src="assets/img/roaya.jpeg" alt="رؤية" style="width:100%;height:180px;object-fit:cover;">
             <h6 class="mt-2 fw-bold" id="name3">رؤية الحزوري</h6>
             <h6 class="mt-2 fw-bold" id="username3">roaya_228719</h6>
             <p id="role3">كاتب المحتوى</p>
@@ -106,11 +106,9 @@
   <script src="assets/js/aboutts.js"></script>
 
   <script>
-    let currentLang = "ar";
-    document.documentElement.lang = currentLang;
-    document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
-    document.getElementById("langToggle").addEventListener("click", () => {
-      currentLang = currentLang === "ar" ? "en" : "ar";
+    let currentLang = localStorage.getItem('language') || "ar";
+    
+    const applyLanguage = () => {
       const t = translations[currentLang];
       document.documentElement.lang = currentLang;
       document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
@@ -124,12 +122,22 @@
       document.getElementById("about-text").innerHTML = t.aboutText;
       document.getElementById("team-title").textContent = t.teamTitle;
       document.getElementById("name1").textContent = t.name1;
+      document.getElementById("name1b").textContent = t.name1b;
       document.getElementById("role1").textContent = t.role1;
+      document.getElementById("role1b").textContent = t.role1b;
       document.getElementById("name2").textContent = t.name2;
       document.getElementById("role2").textContent = t.role2;
       document.getElementById("name3").textContent = t.name3;
       document.getElementById("role3").textContent = t.role3;
       document.getElementById("footer-text").textContent = t.footerText;
+    };
+    
+    applyLanguage();
+    
+    document.getElementById("langToggle").addEventListener("click", () => {
+      currentLang = currentLang === "ar" ? "en" : "ar";
+      localStorage.setItem('language', currentLang);
+      applyLanguage();
     });
   </script>
   <script>

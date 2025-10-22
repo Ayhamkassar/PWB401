@@ -85,7 +85,7 @@
   <script src="assets/js/eventdata.js"></script>
 
   <script>
-    let currentLang = "ar";
+    let currentLang = localStorage.getItem('language') || "ar";
 
     function renderEvents() {
       const container = document.getElementById("events-list");
@@ -135,6 +135,7 @@
 
     document.getElementById("langToggle").addEventListener("click", () => {
       currentLang = currentLang === "ar" ? "en" : "ar";
+      localStorage.setItem('language', currentLang);
       updateTexts();
     });
 

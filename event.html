@@ -94,7 +94,7 @@
   <script src="assets/js/eventsts.js"></script>
 
 <script>
-let currentLang = "ar";
+let currentLang = localStorage.getItem('language') || "ar";
 
 const urlParams = new URLSearchParams(window.location.search);
 const eventId = parseInt(urlParams.get("id"));
@@ -163,6 +163,7 @@ renderEvent(currentLang);
 
 elements.langToggle.addEventListener("click", () => {
   currentLang = currentLang === "ar" ? "en" : "ar";
+  localStorage.setItem('language', currentLang);
   document.documentElement.lang = currentLang;
   document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
   elements.langToggle.textContent = currentLang === "ar" ? "EN" : "AR";

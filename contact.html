@@ -86,13 +86,12 @@
   <script src="assets/js/contactts.js"></script>
 
   <script>
-    let currentLang = "ar";
+    let currentLang = localStorage.getItem('language') || "ar";
     const langToggle = document.getElementById("langToggle");
 
-    langToggle.addEventListener("click", () => {
-      currentLang = currentLang === "ar" ? "en" : "ar";
+    // Apply saved language on load
+    const applyLanguage = () => {
       const t = translations[currentLang];
-      
       document.documentElement.lang = currentLang;
       document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
       langToggle.textContent = currentLang === "ar" ? "EN" : "AR";
@@ -112,8 +111,16 @@
       document.getElementById("message-label").textContent = t.messageLabel;
       document.getElementById("contactMessage").placeholder = t.messagePlaceholder;
       document.getElementById("send-button").textContent = t.sendButton;
-      document.getElementById("contact-info1").innerHTML = `${t.contactInfo1} <strong>contact@cityevents.example</strong>`;
+      document.getElementById("contact-info1").innerHTML = `${t.contactInfo1} <strong>BWP401@gmail.com</strong>`;
       document.getElementById("contact-info2").textContent = t.contactInfo2;
+    };
+
+    applyLanguage();
+
+    langToggle.addEventListener("click", () => {
+      currentLang = currentLang === "ar" ? "en" : "ar";
+      localStorage.setItem('language', currentLang);
+      applyLanguage();
     });
   </script>
 
