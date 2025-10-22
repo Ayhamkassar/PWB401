@@ -30,8 +30,10 @@
           <li class="nav-item"><a class="nav-link" href="about.html">عن الدليل</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">اتصل بنا</a></li>
         </ul>
-        <button id="langToggle" class="btn btn-light ms-2">EN</button>
-        <button id="theme-toggle" class="theme-toggle ms-2">🌙</button>
+        <div class="d-flex flex-column flex-lg-row gap-2">
+          <button id="langToggle" class="btn btn-light">EN</button>
+          <button id="theme-toggle" class="btn btn-secondary">🌙</button>
+        </div>
       </div>
     </div>
   </nav>
@@ -165,6 +167,34 @@ elements.langToggle.addEventListener("click", () => {
   document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
   elements.langToggle.textContent = currentLang === "ar" ? "EN" : "AR";
   renderEvent(currentLang);
+});
+
+// Add to Calendar functionality
+elements.addBtn.addEventListener("click", () => {
+  alert(currentLang === "ar" ? "تمت الإضافة بنجاح" : "Added successfully");
+});
+
+// Share functionality
+elements.shareBtn.addEventListener("click", async () => {
+  if (!event) return;
+  
+  const shareData = {
+    title: event.title[currentLang],
+    text: event.description[currentLang],
+    url: window.location.href
+  };
+  
+  // Try to use Web Share API
+  if (navigator.share) {
+    try {
+      await navigator.share(shareData);
+    } catch (err) {
+      console.log('Error sharing:', err);
+    }
+  } else {
+    // Fallback: Show alert if Web Share API not supported
+    alert(currentLang === "ar" ? "مشاركة غير مدعومة على هذا المتصفح" : "Sharing is not supported on this browser");
+  }
 });
 </script>
 

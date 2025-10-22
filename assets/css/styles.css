@@ -118,22 +118,23 @@ body.dark #scrollTop {
     background-color: #333;
     color: #fff;
 }
-.theme-toggle {
-    position: absolute;
-    left: 10px;
-    top: 10px;
-    padding: 4px 10px;
-    border-radius: 20px;
-    border: none;
-    font-size: 1rem;
-    background: #292929;
-    color: #fff;
-    z-index: 1000;
-    transition: background 0.3s, color 0.3s;
-}
-body:not(.dark) .theme-toggle {
-    background: #ededed;
+.navbar .btn-secondary {
+    background-color: #ededed;
+    border-color: #ededed;
     color: #333;
+}
+.navbar .btn-secondary:hover {
+    background-color: #d0d0d0;
+    border-color: #d0d0d0;
+}
+body.dark .navbar .btn-secondary {
+    background-color: #292929;
+    border-color: #292929;
+    color: #fff;
+}
+body.dark .navbar .btn-secondary:hover {
+    background-color: #3a3a3a;
+    border-color: #3a3a3a;
 }
 .gallery-img {
     width: 120px;
