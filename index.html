@@ -27,6 +27,7 @@
         </ul>
 
         <button id="langToggle" class="btn btn-light ms-2">EN</button>
+        <button id="theme-toggle" class="theme-toggle ms-2">🌙</button>
       </div>
     </div>
   </nav>
@@ -44,15 +45,15 @@
       <section class="mb-5">
         <h3 class="mb-3 text-danger fw-bold" id="categories-title">التصنيفات</h3>
         <div class="d-flex flex-wrap gap-2">
-          <span class="badge bg-danger" id="cat-music">موسيقى</span>
-          <span class="badge bg-danger" id="cat-culture">ثقافة</span>
-          <span class="badge bg-danger" id="cat-sports">رياضة</span>
-          <span class="badge bg-danger" id="cat-family">عائلي</span>
+          <span class="badge bg-danger category-badge" id="cat-music" data-category="موسيقى">موسيقى</span>
+          <span class="badge bg-danger category-badge" id="cat-culture" data-category="ثقافة">ثقافة</span>
+          <span class="badge bg-danger category-badge" id="cat-sports" data-category="رياضة">رياضة</span>
+          <span class="badge bg-danger category-badge" id="cat-family" data-category="عائلي">عائلي</span>
         </div>
       </section>
 
       <section>
-        <h3 class="mb-3 text-danger fw-bold" id="latest-events-title">أحدث الفعاليات</h3>
+        <h3 class="mb-3 text-danger fw-bold" id="latest-events-title"><a href="events.html" style="color:inherit;text-decoration:none;">أحدث الفعاليات</a></h3>
         <div class="row g-3" id="events-list">
         </div>
       </section>
@@ -125,6 +126,28 @@
     });
 
     updateTexts();
+  </script>
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    function setTheme(dark) {
+      if (dark) {
+        document.body.classList.add('dark');
+        themeToggle.textContent = '☀️';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.body.classList.remove('dark');
+        themeToggle.textContent = '🌙';
+        localStorage.setItem('theme', 'light');
+      }
+    }
+    themeToggle.addEventListener('click', () => {
+      setTheme(!document.body.classList.contains('dark'));
+    });
+    if (localStorage.getItem('theme') === 'dark' || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      setTheme(true);
+    } else {
+      setTheme(false);
+    }
   </script>
 </body>
 </html>

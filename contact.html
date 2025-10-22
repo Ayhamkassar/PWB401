@@ -21,6 +21,7 @@
           <li class="nav-item"><a class="nav-link active" id="nav-contact" href="contact.html">اتصل بنا</a></li>
         </ul>
         <button id="langToggle" class="btn btn-light ms-2">EN</button>
+        <button id="theme-toggle" class="theme-toggle ms-2">🌙</button>
       </div>
     </div>
   </nav>
@@ -96,6 +97,29 @@
       document.getElementById("contact-info1").innerHTML = `${t.contactInfo1} <strong>contact@cityevents.example</strong>`;
       document.getElementById("contact-info2").textContent = t.contactInfo2;
     });
+  </script>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    function setTheme(dark) {
+      if (dark) {
+        document.body.classList.add('dark');
+        themeToggle.textContent = '☀️';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.body.classList.remove('dark');
+        themeToggle.textContent = '🌙';
+        localStorage.setItem('theme', 'light');
+      }
+    }
+    themeToggle.addEventListener('click', () => {
+      setTheme(!document.body.classList.contains('dark'));
+    });
+    if (localStorage.getItem('theme') === 'dark' || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      setTheme(true);
+    } else {
+      setTheme(false);
+    }
   </script>
 </body>
 </html>

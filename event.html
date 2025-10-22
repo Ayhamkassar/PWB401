@@ -6,6 +6,7 @@
   <title>تفاصيل الفعالية</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
@@ -26,6 +27,7 @@
           <li class="nav-item"><a class="nav-link" href="contact.html">اتصل بنا</a></li>
         </ul>
         <button id="langToggle" class="btn btn-light ms-2">EN</button>
+        <button id="theme-toggle" class="theme-toggle ms-2">🌙</button>
       </div>
     </div>
   </nav>
@@ -44,6 +46,16 @@
             <button id="addToCalendar" class="btn btn-outline-danger">أضف إلى التقويم</button>
             <button id="shareEvent" class="btn btn-outline-secondary">شارك</button>
           </div>
+
+          <div class="mt-5">
+            <h4 id="galleryTitle" class="text-danger fw-bold mb-3">معرض الصور</h4>
+            <div class="d-flex flex-wrap gap-3 justify-content-center" id="eventGallery">
+              <img src="assets/img/orcestra.png" alt="Gallery Image 1" class="gallery-img">
+              <img src="assets/img/art.png" alt="Gallery Image 2" class="gallery-img">
+              <img src="assets/img/foodfestival.png" alt="Gallery Image 3" class="gallery-img">
+              <img src="assets/img/orcestra.png" alt="Gallery Image 4" class="gallery-img">
+            </div>
+          </div>
         </div>
 
         <div class="col-md-4">
@@ -58,6 +70,13 @@
   </main>
 
   <footer class="footer text-center py-3 bg-light mt-4">
+    <div class="social-links mb-2">
+      <a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.twitter.com" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://wa.me/" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://www.youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    </div>
     <p id="footerText">© 2025 دليل فعاليات المدينة</p>
   </footer>
 
@@ -89,7 +108,8 @@ const elements = {
   langToggle: document.getElementById("langToggle"),
   logoText: document.getElementById("logo-text"),
   searchInput: document.getElementById("searchInput"),
-  detailsBtns: document.querySelectorAll(".details-btn")
+  detailsBtns: document.querySelectorAll(".details-btn"),
+  galleryTitle: document.getElementById("galleryTitle")
 };
 
 function renderEvent(lang) {
@@ -110,6 +130,7 @@ function renderEvent(lang) {
   elements.addBtn.textContent = t.addToCalendar;
   elements.shareBtn.textContent = t.shareButton;
   elements.logoText.textContent = t.title;
+  elements.galleryTitle.textContent = t.galleryTitle;
 
   elements.navLinks.innerHTML = lang === "ar"
     ? `<li class="nav-item"><a class="nav-link" href="index.html">${t.navHome}</a></li>
@@ -142,6 +163,29 @@ elements.langToggle.addEventListener("click", () => {
   renderEvent(currentLang);
 });
 </script>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    function setTheme(dark) {
+      if (dark) {
+        document.body.classList.add('dark');
+        themeToggle.textContent = '☀️';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.body.classList.remove('dark');
+        themeToggle.textContent = '🌙';
+        localStorage.setItem('theme', 'light');
+      }
+    }
+    themeToggle.addEventListener('click', () => {
+      setTheme(!document.body.classList.contains('dark'));
+    });
+    if (localStorage.getItem('theme') === 'dark' || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      setTheme(true);
+    } else {
+      setTheme(false);
+    }
+  </script>
 
 </body>
 </html>

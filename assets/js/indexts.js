@@ -34,4 +34,13 @@ const translations = {
       footerText: "© 2025 City Events Guide"
     }
   };
+
+window.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.category-badge').forEach(function (badge) {
+    badge.addEventListener('click', function () {
+      var cat = badge.getAttribute('data-category');
+      window.location.href = 'events.html?category=' + encodeURIComponent(cat);
+    });
+  });
+});
   

@@ -8,7 +8,9 @@ const eventsData = [
         ar: "أمسية موسيقية مميزة يقدمها نخبة من الفنانين المحليين والعالميين.",
         en: "A special musical evening featuring top local and international artists."
       },
-      image: "assets/img/orcestra.png"
+      image: "assets/img/orcestra.png",
+      governorate: "دمشق",
+      category: "موسيقى"
     },
     {
       id: 2,
@@ -19,7 +21,9 @@ const eventsData = [
         ar: "معرض يعرض أعمال فنانين معاصرين من مختلف أنحاء البلاد.",
         en: "An exhibition showcasing works by contemporary artists from across the country."
       },
-      image: "assets/img/art.png"
+      image: "assets/img/art.png",
+      governorate: "حلب",
+      category: "ثقافة"
     },
     {
       id: 3,
@@ -30,6 +34,34 @@ const eventsData = [
         ar: "استمتع بتذوق أشهى المأكولات في مهرجان الطهي السنوي.",
         en: "Enjoy tasting delicious dishes at the annual food festival."
       },
-      image: "assets/img/foodfestival.png"
+      image: "assets/img/foodfestival.png",
+      governorate: "اللاذقية",
+      category: "عائلي"
+    },
+    {
+      id: 4,
+      title: { ar: "مسرحية تراثية", en: "Heritage Play" },
+      date: { ar: "5 تشرين الثاني 2025", en: "November 5, 2025" },
+      location: { ar: "المسرح الوطني", en: "National Theatre" },
+      description: {
+        ar: "عرض مسرحي يحكي قصص التراث السوري الأصيل.",
+        en: "A theatrical performance narrating authentic Syrian heritage stories."
+      },
+      image: "assets/img/art.png",
+      governorate: "دمشق",
+      category: "ثقافة"
+    },
+    {
+      id: 5,
+      title: { ar: "بطولة كرة القدم", en: "Football Championship" },
+      date: { ar: "20 تشرين الثاني 2025", en: "November 20, 2025" },
+      location: { ar: "ملعب تشرين", en: "Tishreen Stadium" },
+      description: {
+        ar: "بطولة محلية تجمع أفضل الفرق الرياضية في المدينة.",
+        en: "A local championship bringing together the best sports teams in the city."
+      },
+      image: "assets/img/orcestra.png",
+      governorate: "دمشق",
+      category: "رياضة"
     }
   ];
