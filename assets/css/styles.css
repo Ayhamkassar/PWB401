@@ -196,4 +196,8 @@ body.dark .category-filter-btn.active {
     background-color: #d62828;
     color: white;
 }
+
+.names {
+    flex-direction: row;
+}
   
